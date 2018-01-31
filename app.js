@@ -1,12 +1,13 @@
 const ws = require('nodejs-websocket');
 const http = require('http');
 const fs = require('fs');
+const { addy } = require('./connection');
 
 const history = [];
 
 http.createServer(function(req,res){
     fs.createReadStream('index.html').pipe(res);
-}).listen(7899,'10.2.61.94');
+}).listen(addy.http_port,addy.current_ip);
 
 const server = ws.createServer(function(conn){
     console.log('*~New connection');
@@ -53,6 +54,6 @@ function sendAll(msg){
     });
 }
 
-server.listen(7890,'10.2.61.94',() => {
+server.listen(addy.ws_port,addy.current_ip,() => {
     console.log('<---| Listening to socket on 7890 |--->');
 });

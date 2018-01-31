@@ -146,8 +146,8 @@
                     const msgEntry = document.getElementById('msgField');
                     const nameEntry = document.getElementById('nameField');
                     const bodyText = document.getElementById('messageBody');
-
-                    ws = new WebSocket("ws://10.2.61.94:7890");
+                    //const socketAddy = 'ws://addyforwsconnection:port'
+                    ws = new WebSocket(socketAddy);
 
                     ws.onopen = function() {
                         console.log('Connected to socket');
