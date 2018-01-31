@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Chat Room Demo</title>
+        <!-- <script src="./client.js"></script> -->
+        <style>
+            body {
+                margin: 0;
+                background-color: papayawhip;
+            }
+
+            #messageBody {
+                width: 90%;
+                height: 500px;
+                border: 2px dotted gray;
+                position: absolute;
+                top: 20px;
+                left: 5%;
+                box-sizing: border-box;
+                overflow-x: hidden;
+                overflow-y: auto;
+                background-color: white;
+            }
+
+            .parent {
+                width: 90%;
+                margin: 8px auto;
+                display: block;
+            }
+
+            .msg {
+                width: 80%;
+                display: inline-block;
+                right: 0;
+                top: 0;
+                box-sizing: border-box;
+            }
+
+            .name {
+                width: 20%;
+                display: inline-block;
+                top: 0;
+                left: 0;
+                box-sizing: border-box;
+            }
+
+
+            #msgField {
+                width: 80%;
+                height: 50px;
+                position: absolute;
+                top: 520px;
+                left: 5%;
+                display: inline-block;
+                box-sizing: border-box;
+                background-color: white;
+                border: 2px dotted red;
+                margin: 5px 0;
+                font-size: 25px;
+            }
+
+            #send {
+                background-color: skyblue;
+                color: whitesmoke;
+                width: 10%;
+                height: 50px;
+                position: absolute;
+                top: 520px;
+                right: 5%;
+                border: 2px dotted whitesmoke;
+                box-sizing: border-box;
+                display: inline-block;
+                margin: 5px 0;
+                font-size: 25px;
+            }
+
+            .modal {
+                width: 100vw;
+                height: 100vh;
+                background-color: red;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            #nameField {
+                width: 50%;
+                display: block;
+                top: 50%;
+                left: 50%;
+                height: 50px;
+                border: 4px dotted yellow;
+                margin: 0 auto;
+                background-color: salmon;
+                font-size: 25px;
+                color: #0e35b0;
+                text-align: center;
+                border-radius: 10%;
+            }
+
+            #set {
+                width: 20%;
+                height: 50px;
+                display: block;
+                background-color: blue;
+                color: yellow;
+                border: 4px dotted whitesmoke;
+                box-sizing: border-box;
+                margin: 40px auto;
+                font-size: 22px;
+                border-radius: 10%;
+            }
+
+            .modal p {
+                top: 10%;
+                left: 50%;
+                font-size: 5rem;
+                color: yellow;
+                text-align: center;
+                display: block;
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+        <div id="messageBody"></div>
+        <input type="text" name="message" id="msgField" value="" placeholder="Enter message">
+        <button type="button" name="msgButton" id="send">Send</button>
+
+        <div class="modal">
+            <p>Welcome! Enter a name to chat!</p>
+            <input type="text" name="name" value="" id="nameField" placeholder="Enter username">
+            <button type="button" name="nameButton" id="set">Set</button>
+        </div>
+        <script type="text/javascript">
+            var username = null;
+
+            function webSocketInit() {
+                if ("WebSocket" in window) {
+                    const sendButton = document.getElementById('send');
+                    const setButton = document.getElementById('set');
+                    const msgEntry = document.getElementById('msgField');
+                    const nameEntry = document.getElementById('nameField');
+                    const bodyText = document.getElementById('messageBody');
+
+                    ws = new WebSocket("ws://10.2.61.94:7890");
+
+                    ws.onopen = function() {
+                        console.log('Connected to socket');
+                    }
+
+                    ws.onclose = function() {
+                        console.log("Socket connection has closed");
+                    }
+
+                    ws.onmessage = function(msg){
+                        console.log('Message recieved',msg);
+                        msg = JSON.parse(msg.data);
+
+                        let parentDiv = document.createElement("div");
+                        let nameDiv = document.createElement("div");
+                        let msgDiv = document.createElement("div");
+                        let message = document.createTextNode(msg.message);
+                        let name = document.createTextNode(msg.user);
+                        parentDiv.className = 'parent';
+                        nameDiv.className = 'name';
+                        msgDiv.className = 'msg';
+                        nameDiv.setAttribute("style", 'color: rgb(' + msg.color[0] + ',' + msg.color[1] + ',' + msg.color[2] + ');');
+
+                        msgDiv.appendChild(message);
+                        nameDiv.appendChild(name);
+                        parentDiv.appendChild(nameDiv);
+                        parentDiv.appendChild(msgDiv);
+                        bodyText.appendChild(parentDiv);
+                        updateScroll();
+                    }
+
+                    const send_msg = function(message){
+                        ws.send(message);
+                    }
+
+
+
+                    sendButton.onmouseup = function(){
+                        let data = {};
+                        data.message = msgEntry.value.trim();
+                        data.user = username;
+                        if (data.message) {
+                            ws.send(JSON.stringify(data));
+                        }
+                        msgEntry.value = '';
+                    }
+
+                    setButton.onmouseup = function(){
+                        let name = nameEntry.value.trim();
+                        if (name) username = name;
+                        document.querySelector('.modal').setAttribute('style','display: none');
+                    }
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function(event) {
+                webSocketInit();
+            });
+
+            function updateScroll(){
+                var element = document.getElementById("messageBody");
+                element.scrollTop = element.scrollHeight;
+            }
+
+        </script>
+    </body>
+</html>
