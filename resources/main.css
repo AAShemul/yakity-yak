@@ -17,6 +17,7 @@ body {
     background-color: whitesmoke;
     border: 1px solid black;
     box-sizing: border-box;
+    position: relative;
 }
 
 .inputdiv {
@@ -31,6 +32,7 @@ input {
     height: 35px;
     display: inline-block;
     border: 1px solid black;
+    padding-left: 15px;
 }
 
 .submit {
@@ -89,4 +91,20 @@ input {
     top: 0;
     left: 0;
     box-sizing: border-box;
+}
+
+#preferences {
+    position: absolute;
+    height: 20px;
+    bottom: -23px;
+    left: 4px;
+    padding-right: 4px;
+    text-align: center;
+    color: #0505c5;
+    cursor: pointer;
+    width: auto;
+}
+
+#preferences:hover {
+    text-decoration: underline;
 }

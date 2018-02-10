@@ -37,7 +37,9 @@ const server = ws.createServer(function(conn){
         let message = JSON.parse(str);
         history.push(message);
         if (history.length > 50) history.splice(-50);
-        message.color = color;
+        if (!message.color){
+            message.color = color;
+        }
         sendAll(JSON.stringify(message))
 
     });

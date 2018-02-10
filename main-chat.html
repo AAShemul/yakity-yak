@@ -7,7 +7,9 @@
     </head>
     <body>
         <div class="container">
-            <div id="chatWindow"></div>
+            <div id="chatWindow">
+                <div id="preferences">Update User Info</div>
+            </div>
             <div class="inputdiv">
                 <input type="text" name="username" id="msgField" value="" placeholder="Enter a message">
                 <div class="submit" id="send"><span>SEND</span></div>
@@ -16,6 +18,24 @@
 
         <script type="text/javascript">
             var username = localStorage.getItem('userName') || undefined;
+            var messagefield = document.getElementById('msgField');
+            var prefButton = document.getElementById('preferences');
+
+            prefButton.addEventListener('click',function(){
+                var mainbody = window.parent.document.getElementById('main');
+                var chat = window.parent.document.getElementById('chat');
+                var input = window.parent.document.getElementById('namefield');
+                mainbody.style.display = 'block';
+                chat.style.display = 'none';
+                input.value = localStorage.getItem('userName');
+            });
+
+            messagefield.addEventListener('keypress', (event) => {
+                if (event.keyCode == 13) {
+                    document.getElementById('send').click();
+                }
+            })
+
 
             function webSocketInit() {
                 if ("WebSocket" in window) {
@@ -26,17 +46,16 @@
                     ws = new WebSocket(socketAddy);
 
                     ws.onopen = function() {
-                        console.log('Connected to chat');
+                        console.log('<|--Connected to chat--|>');
                     }
 
                     ws.onclose = function() {
-                        console.log("Chat connection has closed");
+                        console.log("<|--Chat connection has closed--|>");
                     }
 
 
 
                     ws.onmessage = function(msg){
-                        console.log('Chat message recieved',msg);
                         msg = JSON.parse(msg.data);
 
                         let parentDiv = document.createElement("div");
@@ -48,7 +67,6 @@
                         nameDiv.className = 'name';
                         msgDiv.className = 'msg';
                         nameDiv.setAttribute("style", 'color: rgb(' + msg.color[0] + ',' + msg.color[1] + ',' + msg.color[2] + ');');
-                        debugger
                         msgDiv.appendChild(message);
                         nameDiv.appendChild(name);
                         parentDiv.appendChild(nameDiv);
@@ -63,16 +81,15 @@
 
 
 
-                    sendButton.onmouseup = function(){
+                    sendButton.onclick = function(){
                         let data = {};
                         data.message = msgEntry.value.trim();
-                        if (!username){
-                            username = localStorage.getItem('userName');
-                        }
-                        data.user = username;
+                        data.color = convertColor(localStorage.getItem('color').trim()) || [0,0,0];
+                        data.user = localStorage.getItem('userName').trim() || undefined;
                         if (data.message) {
                             ws.send(JSON.stringify(data));
                         }
+
                         msgEntry.value = '';
                         msgEntry.focus();
                     }
@@ -86,6 +103,25 @@
             function updateScroll(){
                 var element = document.getElementById("chatWindow");
                 element.scrollTop = element.scrollHeight;
+            }
+
+            function convertColor(colorName){
+                switch (colorName){
+                    case 'red':
+                        return [178,34,34];
+                    case 'orange':
+                        return [255,140,0];
+                    case 'yellow':
+                        return [255,215,0];
+                    case 'green':
+                        return [0,128,0];
+                    case 'blue':
+                        return [0,0,255];
+                    case 'indigo':
+                        return [75,0,130];
+                    case 'violet':
+                        return [218,112,214];
+                }
             }
 
         </script>

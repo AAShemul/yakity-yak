@@ -15,9 +15,7 @@ function init(){
     $('.submit').on('click',enterChat);
 
     if (localStorage.getItem('userName')) {
-        $('.mainbody').hide();
-        $('iframe').attr('src','./main-chat.html');
-        $('.chatbody').show();
+        $('input').val(localStorage.getItem('userName'));
     }
 
     $('.color').on('click',selectColor)
@@ -42,14 +40,23 @@ function maximize(){
 
 function enterChat(){
     let name = $('#namefield').val();
-    localStorage.setItem('userName',name);
-    $('#namefield').val('');
-    $('.mainbody').hide();
-    $('iframe').attr('src','./main-chat.html');
-    $('.chatbody').show();
+    if (name.length > 2) {
+        $('.warning').text('');
+        localStorage.setItem('userName',name);
+        $('#namefield').val('');
+        $('.mainbody').hide();
+        $('iframe').attr('src','./main-chat.html');
+        $('.chatbody').show();
+    } else {
+        $('.warning').text('User name must be at least 3 characters');
+    }
+
+
 }
 
 function selectColor(){
     $('.color').removeClass('selected');
     $(this).addClass('selected');
+    let color = $(this).attr('class').split(' ')[1];
+    localStorage.setItem('color',color);
 }

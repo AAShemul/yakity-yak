@@ -175,15 +175,15 @@ input {
 }
 
 .color.red {
-    background-color: red;
+    background-color: FireBrick;
 }
 
 .color.orange {
-    background-color: orange;
+    background-color: DarkOrange;
 }
 
 .color.yellow {
-    background-color: yellow;
+    background-color: Gold;
 }
 
 .color.green {
@@ -199,7 +199,7 @@ input {
 }
 
 .color.violet {
-    background-color: violet;
+    background-color: orchid;
 }
 
 .color:hover {
