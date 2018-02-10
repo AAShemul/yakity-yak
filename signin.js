@@ -18,7 +18,10 @@ function init(){
         $('input').val(localStorage.getItem('userName'));
     }
 
-    $('.color').on('click',selectColor)
+    $('.color').on('click',selectColor);
+    timeNow()
+
+    var timeKeeper = setInterval(timeNow,30000);
 }
 
 function minimize(){
@@ -59,4 +62,22 @@ function selectColor(){
     $(this).addClass('selected');
     let color = $(this).attr('class').split(' ')[1];
     localStorage.setItem('color',color);
+}
+
+
+function timeNow(){
+    let d = new Date();
+    let hour = d.getHours();
+    let min = d.getMinutes();
+    let ampm = 'am';
+    if (hour > 12){
+        ampm = 'pm';
+        hour -= 12;
+    }
+    if (min < 10 && min > 0){
+        min = '0' + min;
+    } else if (!min){
+        min = '00';
+    }
+    $('.time-box span').text(`${hour}:${min}${ampm}`);
 }
