@@ -11,7 +11,7 @@
                 <div id="preferences">Update User Info</div>
             </div>
             <div class="inputdiv">
-                <input type="text" name="username" id="msgField" value="" placeholder="Enter a message">
+                <input type="text" name="username" id="msgField" value="" placeholder="Enter a message" autocomplete="off">
                 <div class="submit" id="send"><span>SEND</span></div>
             </div>
         </div>
@@ -42,7 +42,8 @@
                     const sendButton = document.getElementById('send');
                     const msgEntry = document.getElementById('msgField');
                     const bodyText = document.getElementById('chatWindow');
-                    const socketAddy = 'ws://10.2.61.94:7899'
+                    // const socketAddy = 'ws://10.2.61.94:7899'
+                    const socketAddy = 'ws://192.168.0.5:7899'
                     ws = new WebSocket(socketAddy);
 
                     ws.onopen = function() {

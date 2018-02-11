@@ -10,7 +10,7 @@ const history = [];
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
 app.use('/', express.static(path.join(__dirname)));
 
 // http.createServer(function(req,res){

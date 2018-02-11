@@ -11,12 +11,12 @@
     </head>
     <body>
         <div id="desktop">
-            <div class="container">
+            <div class="container chatapp">
 
-                    <span><b id="logo">&#x25B2;</b> Welcome to Yakity-Yak</span>
-                    <div class="square">x</div>
-                    <div class="square">&#x25F3;</div>
-                    <div class="square">_</div>
+                <span><b id="logo">&#x25B2;</b> Welcome to Yakity-Yak</span>
+                <div class="square">x</div>
+                <div class="square">&#x25F3;</div>
+                <div class="square">_</div>
 
 
                 <div class="mainbody" id="main">
@@ -27,7 +27,7 @@
 
                     <div class="inputdiv">
                         <p class="warning"></p>
-                        <input type="text" name="username" id="namefield" value="" placeholder="Username">
+                        <input type="text" name="username" id="namefield" value="" placeholder="Username" autocomplete="off">
                         <div class="submit"><span>JOIN</span></div>
                     </div>
 
@@ -45,18 +45,47 @@
                     <iframe src=""></iframe>
                 </div>
             </div>
+            <div class="home-container homeapp">
+                <span><b id="logo">&#x25B2;</b> /home/</span>
+                <div class="square">x</div>
+                <div class="square">&#x25F3;</div>
+                <div class="square">_</div>
+                <div class="main-files">
+
+                </div>
+            </div>
         </div>
+
+
 
         <div class="begin-bar">
             <div class="begin-container">
                 <div class="begin-button"><span id="begin">&#x26E9; &nbsp; Begin</span></div>
             </div>
-            <div class="open-app"><span><b id="logo">&#x25B2;</b> Welcome to Yackity-Yack</span></div>
+            <div class="open-app chatapp"><span><b id="logo">&#x25B2;</b> Welcome to Yackity-Yack</span></div>
+            <div class="open-app homeapp close-app"><span>&#x26FA; &nbsp; Home</span></div>
             <div class="time-box"><span>-:----</span></div>
+            <div class="begin-menu">
+                Backgrounds:
+                <ul>
+                    <li>Default</li>
+                    <li>Cats</li>
+                    <li>Clouds</li>
+                    <li>Dota</li>
+                    <li>Burgers</li>
+                    <li>Bots</li>
+                    <li>Adventure</li>
+                    <li>Skulls</li>
+                </ul>
+            </div>
         </div>
-        <div class="home-icon">
+        <div class="desktop-icon home">
             <p>&#x26FA;</p>
             <p>Home</p>
+        </div>
+        <div class="desktop-icon chat">
+            <p>&#x270D;</p>
+            <p>Chat</p>
         </div>
     </body>
 </html>
