@@ -7,13 +7,12 @@
     </head>
     <body>
         <div class="container">
-            <div id="chatWindow">
-                <div id="preferences">Update User Info</div>
-            </div>
+            <div id="chatWindow"></div>
             <div class="inputdiv">
                 <input type="text" name="username" id="msgField" value="" placeholder="Enter a message" autocomplete="off">
                 <div class="submit" id="send"><span>SEND</span></div>
             </div>
+            <div id="preferences">Update User Info</div>
         </div>
 
         <script type="text/javascript">
@@ -42,8 +41,8 @@
                     const sendButton = document.getElementById('send');
                     const msgEntry = document.getElementById('msgField');
                     const bodyText = document.getElementById('chatWindow');
-                    // const socketAddy = 'ws://10.2.61.94:7899'
-                    const socketAddy = 'ws://192.168.0.5:7899'
+                    const socketAddy = 'ws://10.2.61.94:7899'
+                    // const socketAddy = 'ws://192.168.0.5:7899'
                     ws = new WebSocket(socketAddy);
 
                     ws.onopen = function() {
@@ -85,7 +84,7 @@
                     sendButton.onclick = function(){
                         let data = {};
                         data.message = msgEntry.value.trim();
-                        data.color = convertColor(localStorage.getItem('color').trim()) || [0,0,0];
+                        data.color = convertColor(localStorage.getItem('color')) || [0,0,0];
                         data.user = localStorage.getItem('userName').trim() || undefined;
                         if (data.message) {
                             ws.send(JSON.stringify(data));

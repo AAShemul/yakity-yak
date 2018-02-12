@@ -4,13 +4,15 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: #008081;
+    overflow: hidden;
 }
 
 * {
     box-sizing: border-box;
+    overflow: hidden;
 }
 
-.container {
+.container.chatapp {
     width: 60%;
     height: 70%;
     border: 1px solid #666;
@@ -19,7 +21,6 @@ body {
     position: absolute;
     top: 15%;
     left: 20%;
-    /* transform: translate(-50%,-50%); */
     background: linear-gradient(to right, navy , skyblue);
     box-shadow: 4px 4px 8px #555;
     z-index: 9;
@@ -27,7 +28,7 @@ body {
     overflow: hidden;
 }
 
-.home-container {
+.container.homeapp {
     width: 40%;
     height: 45%;
     border: 1px solid #666;
@@ -44,6 +45,32 @@ body {
     display: none;
 }
 
+.container.userinfo, .container.readme {
+    width: 20%;
+    height: 44%;
+    border: 1px solid #666;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 9%;
+    left: 9%;
+    background: linear-gradient(to right, navy , skyblue);
+    box-shadow: 4px 4px 8px #555;
+    z-index: 9;
+    cursor: move;
+    overflow: hidden;
+    display: none;
+}
+
+.container.userinfo .main-files, .container.readme .main-files {
+    padding: 15px;
+}
+
+.container.readme {
+    top: 8%;
+    right: 8%;
+}
+
 .main-files {
     position: absolute;
     top: 30px;
@@ -51,7 +78,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: white;
-    border-top: 1px solid #666;
+    border: 4px solid lightgray;
     cursor: default;
 }
 
@@ -113,6 +140,7 @@ body {
 .chatbody {
     display: none;
     height: 99%;
+    overflow: hidden;
 }
 
 .welcome {
@@ -170,7 +198,6 @@ input {
     border-left: 2px solid black;
     top: 2px;
 }
-
 
 .colorbox {
     width: 310px;
@@ -236,6 +263,7 @@ input {
     position: absolute;
     bottom: 0;
     left: 0;
+    overflow: visible;
 }
 
 .begin-button {
@@ -258,7 +286,6 @@ input {
     border-left: 2px solid white;
     display: inline-block;
     margin: 1px 10px 0px 4px;
-
 }
 
 .open-app {
@@ -278,9 +305,7 @@ input {
     overflow: hidden;
 }
 
-.open-app.homeapp {
-    display: none;
-}
+
 
 .close-app {
     display: inline-block;
@@ -291,6 +316,10 @@ input {
     border-top: 2px solid white;
     border-left: 2px solid white;
     background-color: silver;
+}
+
+.open-app.homeapp, .open-app.readme, .open-app.userinfo  {
+    display: none;
 }
 
 .time-box {
@@ -361,12 +390,12 @@ input {
     border: 1px dotted rgba(190,190,190,0.5);
 }
 
-.home {
+.homeapp {
     top: 10px;
     left: 20px;
 }
 
-.chat {
+.chatapp {
     top: 120px;
     left: 20px;
 }
@@ -375,12 +404,14 @@ input {
     width: 100%;
     height: 100%;
     padding-bottom: 40px;
+    overflow: hidden;
 }
 
 iframe {
     width: 100%;
     height: 100%;
     border: none;
+    overflow: hidden;
 }
 
 /*---------------------------*/
@@ -461,4 +492,38 @@ iframe {
     margin-top: 15px;
     width: 100%;
     padding: 0;
+}
+
+.file-list .desktop-icon {
+    position: static;
+    width: auto;
+    display: inline-block;
+    height: auto;
+    text-align: center;
+    color: #333;
+    left: 10px;
+    margin-left: 15px;
+}
+
+
+.file-list .desktop-icon p {
+    margin: 0px;
+    font-size: 0.9em;
+    font-weight: normal;
+    user-select: none;
+    cursor: default;
+    border: 1px dotted transparent;
+    font-family: sans-serif;
+    text-shadow: 0 0 0 black;
+}
+
+.file-list .desktop-icon p:first-child {
+    font-size: 3em;
+    color: brown;
+}
+
+.file-list .desktop-icon p.highlighted {
+    background-color: rgba(0,36,100,0.15);
+    border-radius: 4px;
+    border: 1px dotted rgba(190,190,190,0.5);
 }

@@ -18,6 +18,7 @@ body {
     border: 1px solid black;
     box-sizing: border-box;
     position: relative;
+    overflow: auto;
 }
 
 .inputdiv {
