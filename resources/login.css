@@ -14,6 +14,7 @@ body {
 
 .container.chatapp {
     width: 60%;
+    min-width: 750px;
     height: 70%;
     border: 1px solid #666;
     margin: 0;
@@ -30,6 +31,7 @@ body {
 
 .container.homeapp {
     width: 40%;
+    min-width: 450px;
     height: 45%;
     border: 1px solid #666;
     margin: 0;
@@ -47,6 +49,7 @@ body {
 
 .container.userinfo, .container.readme {
     width: 20%;
+    min-width: 400px;
     height: 44%;
     border: 1px solid #666;
     margin: 0;
@@ -82,7 +85,7 @@ body {
     cursor: default;
 }
 
-.container span, .home-container span {
+.container span {
     display: inline-block;
     position: absolute;
     left: 22px;
@@ -144,9 +147,8 @@ body {
 }
 
 .welcome {
-    margin-top: 10%;
+    margin-top: 8%;
     display: block;
-    width: 100%;
     text-align: center;
     height: auto;
     font-family: serif;
@@ -156,7 +158,7 @@ body {
     text-align: center;
     display: block;
     width: 100%;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 input {
@@ -202,7 +204,7 @@ input {
 .colorbox {
     width: 310px;
     display: block;
-    margin: 10% auto;
+    margin: 5% auto;
     height: auto;
 }
 
@@ -475,6 +477,7 @@ iframe {
 .begin-menu li {
     height: 50px;
     width: 100%;
+    min-width: 200px;
     margin: 0;
     font-size: 1.5em;
     padding-left: 25px;
