@@ -1,21 +1,10 @@
 const ws = require('nodejs-websocket');
 const addy = require('./connection');
-const express = require('express');
-const logger = require('morgan');
 const path = require('path');
 
-const app = express();
 
 const history = [];
 
-app.use(logger('dev'));
-app.use(express.json());
-// app.use(express.urlencoded());
-app.use('/', express.static(path.join(__dirname)));
-
-// http.createServer(function(req,res){
-//     fs.createReadStream('signIn.html').pipe(res);
-// }).listen(addy.http_port,addy.current_ip);
 
 const server = ws.createServer(function(conn){
     console.log('*~New connection');
@@ -69,9 +58,5 @@ function sendAll(msg){
 
 
 server.listen(addy.ws_port,addy.current_ip,() => {
-    console.log('<---| Listening to socket on 7890 |--->');
-});
-
-app.listen(addy.http_port,addy.current_ip, () => {
-    console.log("<---| Lets chat! |--->", addy.current_ip,addy.http_port);
+    console.log(`<---| Listening to socket on ${addy.ws_port} |--->`);
 });

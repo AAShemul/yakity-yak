@@ -9,8 +9,6 @@
   "author": "Brian Evans",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2",
-    "morgan": "^1.9.0",
     "nodejs-websocket": "^1.7.1"
   }
 }
