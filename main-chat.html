@@ -41,9 +41,11 @@
                     const sendButton = document.getElementById('send');
                     const msgEntry = document.getElementById('msgField');
                     const bodyText = document.getElementById('chatWindow');
-                    const socketAddy = 'ws://10.2.61.94:7899'
+                    //const socketAddy = 'ws://52.38.139.48:7899'
                     // const socketAddy = 'ws://192.168.0.5:7899'
-                    ws = new WebSocket(socketAddy);
+		    const socketAddy = 'ws://brianmevans.com/ws/';                    
+
+		    ws = new WebSocket(socketAddy);
 
                     ws.onopen = function() {
                         console.log('<|--Connected to chat--|>');

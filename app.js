@@ -8,10 +8,10 @@ const app = express();
 
 const history = [];
 
-app.use(logger('dev'));
-app.use(express.json());
+//app.use(logger('dev'));
+//app.use(express.json());
 // app.use(express.urlencoded());
-app.use('/', express.static(path.join(__dirname)));
+//app.use('/', express.static(path.join(__dirname)));
 
 // http.createServer(function(req,res){
 //     fs.createReadStream('signIn.html').pipe(res);
@@ -72,6 +72,6 @@ server.listen(addy.ws_port,addy.current_ip,() => {
     console.log('<---| Listening to socket on 7890 |--->');
 });
 
-app.listen(addy.http_port,addy.current_ip, () => {
-    console.log("<---| Lets chat! |--->", addy.current_ip,addy.http_port);
-});
+//app.listen(addy.http_port,addy.current_ip, () => {
+//    console.log("<---| Lets chat! |--->", addy.current_ip,addy.http_port);
+//});

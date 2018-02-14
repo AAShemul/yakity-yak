@@ -1,5 +1,5 @@
 module.exports = {
     current_ip : //ip,
-    http_port : //port,
-    ws_port : //port
+    http_port : 7890,
+    ws_port : 7899
 }
