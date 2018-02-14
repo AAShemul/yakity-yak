@@ -21,7 +21,15 @@ function init(){
     $('.submit').on('click',enterChat);
 
     $('.container').draggable({
-        cancel: '.container div, .container div *, .home-container div, .home-container div *'
+        cancel: '.container div, .container div *, .home-container div, .home-container div *',
+        revert: 'invalid',
+        revertDuration: 200,
+        scroll: false
+    });
+
+    $('#desktop').droppable({
+        tolerance: 'pointer',
+        accept: '.container'
     });
 
     if (localStorage.getItem('userName')) {

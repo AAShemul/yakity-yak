@@ -94,15 +94,13 @@ input {
 }
 
 #preferences {
-    position: absolute;
     height: 20px;
-    bottom: -23px;
-    left: 4px;
     padding-right: 4px;
-    text-align: center;
     color: #0505c5;
     cursor: pointer;
-    width: auto;
+    margin-left: 5%;
+    margin-top: 10px;
+    text-decoration: none;
 }
 
 #preferences:hover {
